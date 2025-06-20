@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel Backend Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff2d20',
+                        secondary: '#0f172a',
+                        accent: '#1e40af',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        code: ['Source Code Pro', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff2d20;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .code-block {
+            background: #1e293b;
+            border-left: 4px solid #ff2d20;
+            font-family: 'Source Code Pro', monospace;
+        }
+        .tech-badge {
+            transition: all 0.3s ease;
+        }
+        .tech-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #ff2d20;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .skill-bar {
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff2d20, #1e40af);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-poppins">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-secondary shadow-lg z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary flex items-center">
+                <i class="fab fa-laravel mr-2"></i> Backend Dev
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-white transition">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white transition">About</a>
+                <a href="#skills" class="nav-link text-gray-300 hover:text-white transition">Skills</a>
+                <a href="#certificates" class="nav-link text-gray-300 hover:text-white transition">Certificates</a>
+                <a href="#projects" class="nav-link text-gray-300 hover:text-white transition">Projects</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white transition">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-300">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Mostafa Ahmed</h1>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Laravel Backend Developer</h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    I build scalable backend systems with Laravel and PHP, focusing on performance,
+                    security, and maintainability.
+                </p>
+
+                <div class="flex space-x-4">
+                    <a href="#projects" class="bg-primary hover:bg-red-700 text-white px-6 py-3 rounded-full font-medium transition shadow-lg">
+                        <i class="fas fa-code mr-2"></i>View Projects
+                    </a>
+
+                </div>
+            </div>
+  <div class="md:w-1/2 flex justify-center">
+    <div class="relative">
+        <!-- الدايرة الكبيرة بالتدرج -->
+        <div class="w-72 h-72 md:w-80 md:h-80 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-2xl floating relative">
+
+            <!-- الصورة جوا الدايرة الداخلية -->
+            <div class="bg-gray-800 w-64 h-64 rounded-full flex items-center justify-center overflow-hidden">
+                <img src="images/4.jpg" alt="desha photo" class="w-full h-full object-cover rounded-full">
+            </div>
+
+            <!-- الكلام فوق البوردر الخارجي -->
+            <div class="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-1 text-sm font-code border border-white rounded-full shadow-md z-10">
+                PHP & laravel
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    <div class="absolute -bottom-4 -right-4 bg-white text-secondary px-6 py-2 rounded-full font-bold shadow-lg">
+                        <i class="fas fa-server mr-2"></i>API Specialist
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">About <span class="text-primary">Me</span></h2>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+                Passionate backend developer specializing in Laravel and PHP with expertise in building
+                scalable and secure web applications.
+            </p>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-2/5">
+                    <div class="bg-gradient-to-br from-secondary to-gray-900 rounded-2xl p-8 shadow-xl">
+                        <div class="flex justify-center mb-6">
+                            <div class="relative">
+                                <div class="w-48 h-48 bg-gray-700 rounded-full overflow-hidden border-4 border-primary">
+                                    <div class="w-full h-full flex items-center justify-center">
+                <img src="images/5.jpg" alt="desha photo" class="w-full h-full object-cover rounded-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-center mb-2">Backend Specialist</h3>
+                        <p class="text-gray-400 text-center mb-6">
+                            Laravel • PHP • API Development
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <div class="text-primary text-3xl font-bold mb-1">1</div>
+                                <div class="text-gray-400">Years Experience</div>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <div class="text-primary text-3xl font-bold mb-1">5+</div>
+                                <div class="text-gray-400">Projects</div>
+                            </div>
+
+                            <div class="bg-gray-800 p-4 rounded-lg">
+                                <div class="text-primary text-3xl font-bold mb-1">20K+</div>
+                                <div class="text-gray-400">Lines of Code</div>
+                            </div>
+                        </div>
+
+                     <div class="flex justify-center space-x-4">
+    <!-- GitHub -->
+    <a href="https://github.com/mostafaahmed66" target="_blank" class="bg-gray-800 hover:bg-gray-700 text-gray-300 w-12 h-12 rounded-full flex items-center justify-center">
+        <i class="fab fa-github"></i>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/mostafa-ahmed-6a5582234" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/201022206850" target="_blank" class="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+                    </div>
+                </div>
+
+                <div class="lg:w-3/5">
+                    <div class="bg-gradient-to-br from-secondary to-gray-900 rounded-2xl p-8 shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6">My Backend Development Journey</h3>
+
+                        <div class="prose prose-invert max-w-none">
+                            <p class="mb-4">
+                                Hello! I'm a passionate backend developer specializing in <span class="text-primary font-semibold">Laravel</span> and <span class="text-primary font-semibold">PHP</span>. With 1 years of professional experience, I've built robust APIs, scalable web applications, and complex backend systems for clients worldwide.
+                            </p>
+
+                            <p class="mb-4">
+                                My expertise includes designing efficient database architectures, implementing RESTful APIs, optimizing application performance, and ensuring the security of web applications. I follow best practices like SOLID principles, and clean code architecture.
+                            </p>
+
+                            <p class="mb-6">
+                                When I'm not coding, I contribute to open-source Laravel packages, write technical articles, and mentor junior developers. I believe in continuous learning and staying updated with the latest backend technologies and methodologies.
+                            </p>
+
+                            <div class="code-block p-6 rounded-lg mb-6">
+                                <pre class="font-code text-gray-300 overflow-x-auto">
+<span class="text-blue-400">namespace</span> <span class="text-cyan-400">App\Http\Controllers\API</span>;
+
+<span class="text-blue-400">use</span> <span class="text-cyan-400">Illuminate\Http\Request</span>;
+<span class="text-blue-400">use</span> <span class="text-cyan-400">App\Models\Project</span>;
+<span class="text-blue-400">use</span> <span class="text-cyan-400">App\Http\Resources\ProjectResource</span>;
+
+<span class="text-blue-400">class</span> <span class="text-yellow-400">ProjectController</span> <span class="text-blue-400">extends</span> <span class="text-cyan-400">Controller</span>
+{
+    <span class="text-green-500">// Efficient API endpoint with resource transformation</span>
+    <span class="text-blue-400">public function</span> <span class="text-yellow-400">index</span>()
+    {
+        <span class="text-blue-400">return</span> ProjectResource::collection(
+            Project::with(<span class="text-amber-400">'tasks'</span>)
+                ->active()
+                ->paginate(<span class="text-emerald-400">10</span>)
+        );
+    }
+}</pre>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <a href="#contact" class="bg-primary hover:bg-red-700 text-white px-6 py-3 rounded-full font-medium transition">
+                                <i class="fas fa-envelope mr-2"></i>Hire Me
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Technical <span class="text-primary">Skills</span></h2>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+                My expertise in backend development technologies and frameworks
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Core Skills -->
+                <div class="bg-gradient-to-br from-secondary to-gray-900 rounded-2xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-cogs text-primary mr-3"></i> Core Technologies
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Laravel Framework</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">PHP</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 98%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">MySQL</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">RESTful API Development</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Skills -->
+                <div class="bg-gradient-to-br from-secondary to-gray-900 rounded-2xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-plus-circle text-primary mr-3"></i> Additional Expertise
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Testing (PHPUnit)</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Server Management</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Docker</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 78%"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technologies -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center mb-8">Technologies I Work With</h3>
+
+                <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fab fa-laravel text-primary text-xl mr-2"></i> Laravel
+                    </span>
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fab fa-php text-blue-500 text-xl mr-2"></i> PHP
+                    </span>
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fas fa-database text-yellow-500 text-xl mr-2"></i> MySQL
+                    </span>
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fab fa-aws text-orange-500 text-xl mr-2"></i> AWS
+                    </span>
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fab fa-docker text-blue-400 text-xl mr-2"></i> Docker
+                    </span>
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fab fa-git text-orange-600 text-xl mr-2"></i> Git
+                    </span>
+
+                    <span class="tech-badge bg-gray-800 px-5 py-3 rounded-lg flex items-center">
+                        <i class="fas fa-cloud text-blue-300 text-xl mr-2"></i> REST APIs
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Certificates Section -->
+<section id="certificates" class="py-20">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">My <span class="text-primary">Certificates</span></h2>
+        <p class="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+            Recognitions and certifications I've earned throughout my learning journey
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Certificate Card 1 -->
+            <div class="bg-gradient-to-br from-secondary to-gray-900 p-4 rounded-xl shadow-lg text-center">
+                <div class="w-full h-48 bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                    <!-- Placeholder for certificate image -->
+                    <span class="text-gray-400"><img src="images/shada.jpg" alt=""></span>
+                </div>
+                <h3 class="text-xl font-semibold text-white">Laravel Backend Certification</h3>
+                <p class="text-gray-400 text-sm">Issued by INSTANT</p>
+            </div>
+
+            <!-- Certificate Card 2 -->
+          <div class="bg-gradient-to-br from-secondary to-gray-900 p-4 rounded-xl shadow-lg text-center">
+    <div class="w-full h-48 bg-gray-700 rounded-lg overflow-hidden mb-4">
+        <img src="images/image.png" alt="certificate" class="w-full h-full object-cover">
+    </div>
+    <h3 class="text-xl font-semibold text-white">Training</h3>
+    <p class="text-gray-400 text-sm">Issued by INSTANT</p>
+</div>
+
+
+            <!-- Certificate Card 3 -->
+                    <div class="bg-gradient-to-br from-secondary to-gray-900 p-4 rounded-xl shadow-lg text-center">
+    <div class="w-full h-48 bg-gray-700 rounded-lg overflow-hidden mb-4">
+        <img src="images/iti.jpg" alt="certificate" class="w-full h-full object-cover">
+    </div>
+    <h3 class="text-xl font-semibold text-white">Web Development Certification</h3>
+    <p class="text-gray-400 text-sm">Issued by ITI</p>
+</div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">My <span class="text-primary">Laravel & PHP Projects</span></h2>
+        <p class="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+            A selection of backend projects I've built with PHP & Laravel
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project 1: CourDesha -->
+            <div class="project-card rounded-2xl overflow-hidden border border-gray-700">
+                <div class="h-48 bg-gradient-to-r from-yellow-600 to-orange-600 flex items-center justify-center">
+                    <i class="fas fa-chalkboard-teacher text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">CourDesha</h3>
+                        <span class="bg-gray-800 text-primary text-sm px-3 py-1 rounded-full">PHP Native</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        A dashboard for managing a course center. Handles courses, students, and admin functions.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">PHP</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">MySQL</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: HR System -->
+            <div class="project-card rounded-2xl overflow-hidden border border-gray-700">
+                <div class="h-48 bg-gradient-to-r from-blue-700 to-indigo-700 flex items-center justify-center">
+                    <i class="fas fa-user-tie text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">HR System</h3>
+                        <span class="bg-gray-800 text-primary text-sm px-3 py-1 rounded-full">Laravel</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        HR dashboard to manage job postings, handle CVs, and send onboarding emails to new hires.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">Laravel MVC</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">Mail</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">Blade</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Pharmacy App -->
+            <div class="project-card rounded-2xl overflow-hidden border border-gray-700">
+                <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
+                    <i class="fas fa-prescription-bottle-alt text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Pharmacy App API</h3>
+                        <span class="bg-gray-800 text-primary text-sm px-3 py-1 rounded-full">Laravel API</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Full backend for a pharmacy app. I managed database structure, API logic, and hosting setup.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">Laravel API</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">MySQL</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">Hosting</span>
+                        <span class="tech-badge bg-gray-800 px-3 py-1 rounded-full text-xs">Backend Dev</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+  <!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-950 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Get In <span class="text-primary">Touch</span></h2>
+        <p class="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+            Have a project in mind? Feel free to contact me!
+        </p>
+
+        <div class="max-w-3xl mx-auto bg-gray-900 rounded-2xl shadow-lg p-8">
+            <div class="space-y-8 text-center">
+
+                <!-- Email -->
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-envelope text-white"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-bold">Email</h4>
+                        <p class="text-gray-400">mostafaahmed66@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-phone text-white"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-bold">Phone</h4>
+                        <p class="text-gray-400">01022206850</p>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt text-white"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-bold">Location</h4>
+                        <p class="text-gray-400">Mansoura, Egypt</p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <h4 class="font-bold text-xl mb-4">Follow Me</h4>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://github.com/desha66" class="bg-gray-800 hover:bg-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mostafa-ahmed-6a5582234?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="bg-blue-600 hover:bg-blue-700 w-12 h-12 rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/deshaahmed_66?t=l9Snxbq00i4jSYoxUftCtA&s=09" class="bg-blue-400 hover:bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+</html>
